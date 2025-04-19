@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Adoptantes</title>
+</head>
+<body>
+    <h1>Lista de Adoptantes</h1>
+    <ul>
+        {% for adoptante in adoptantes %}
+            <li>
+                <a href="{% url 'detalle_adoptante' adoptante.pk %}">{{ adoptante.nombre }} {{ adoptante.apellido }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Solicitudes de Adopción</title>
+</head>
+<body>
+    <h1>Lista de Solicitudes de Adopción</h1>
+    <ul>
+        {% for solicitud in solicitudes %}
+            <li>
+                <a href="{% url 'detalle_solicitud' solicitud.pk %}">
+                    Solicitud de {{ solicitud.adoptante.nombre }} para {{ solicitud.mascota.nombre }}
+                </a> - Estado: {{ solicitud.estado }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

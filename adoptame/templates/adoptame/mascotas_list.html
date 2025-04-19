@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Mascotas Disponibles</title>
+</head>
+<body>
+    <h1>Lista de Mascotas Disponibles</h1>
+    <ul>
+        {% for mascota in mascotas %}
+            <li>
+                <a href="{% url 'detalle_mascota' mascota.pk %}">{{ mascota.nombre }}</a> - {{ mascota.raza }} ({{ mascota.edad }} años)
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle del Adoptante</title>
+</head>
+<body>
+    <h1>{{ adoptante.nombre }} {{ adoptante.apellido }}</h1>
+    <p>Email: {{ adoptante.email }}</p>
+    <p>Teléfono: {{ adoptante.telefono }}</p>
+    <p>Dirección: {{ adoptante.direccion }}</p>
+    <a href="{% url 'lista_adoptantes' %}">Volver a la lista de adoptantes</a>
+</body>
+</html>

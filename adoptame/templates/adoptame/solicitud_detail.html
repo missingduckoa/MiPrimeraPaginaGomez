@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle de la Solicitud de Adopción</title>
+</head>
+<body>
+    <h1>Detalle de la Solicitud</h1>
+    <p>Mascota: {{ solicitud.mascota.nombre }}</p>
+    <p>Adoptante: {{ solicitud.adoptante.nombre }} {{ solicitud.adoptante.apellido }}</p>
+    <p>Fecha de solicitud: {{ solicitud.fecha_solicitud }}</p>
+    <p>Estado: {{ solicitud.estado }}</p>
+    <p>Comentarios: {{ solicitud.comentarios }}</p>
+    <a href="{% url 'lista_solicitudes' %}">Volver a la lista de solicitudes</a>
+</body>
+</html>
