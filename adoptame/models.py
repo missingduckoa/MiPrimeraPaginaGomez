@@ -41,3 +41,13 @@ class SolicitudAdopcion(models.Model):
 
     def __str__(self):
         return f"Solicitud de {self.adoptante} para {self.mascota}"
+
+
+class Persona(models.Model):
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    telefono = models.CharField(max_length=15, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"

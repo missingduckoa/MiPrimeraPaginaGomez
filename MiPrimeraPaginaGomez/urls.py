@@ -18,5 +18,6 @@ urlpatterns = [
     path('solicitudes/', views.lista_solicitudes, name='lista_solicitudes'),  # Lista de solicitudes
     path('solicitudes/<int:pk>/', views.detalle_solicitud, name='detalle_solicitud'),  # Detalle de solicitud
     path('buscar/', views.buscar, name='buscar'),  # Nueva ruta para buscar
+    path('registrar/', views.registrar_persona, name='registrar_persona'),  # Ruta para el formulario de ingreso
 ]
 

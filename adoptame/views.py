@@ -1,55 +1,70 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Mascota, Adoptante, SolicitudAdopcion
+from .forms import PersonaForm, MascotaBusquedaForm
 
-# Create your views here.
-def index(request): #funcion necesaria para recibir como rta lo q tenga la funcion index
+# Página principal
+def index(request):
     context = {'mensaje': 'Millones de mascotas están esperando un hogar. Adopta, salva vidas y crea recuerdos inolvidables.'}
     return render(request, 'adoptame/index.html', context)
 
-def lista_mascotas(request): #vista para listar mascotas disponibles
-    mascotas = Mascota.objects.filter(adoptada=False)  #mascotas no adoptadas
+# Lista de mascotas disponibles
+def lista_mascotas(request):
+    mascotas = Mascota.objects.filter(adoptada=False)
     return render(request, 'adoptame/mascotas_list.html', {'mascotas': mascotas})
 
-def detalle_mascota(request, pk): #muestra detalles de una mascota en particular
+# Detalle de una mascota
+def detalle_mascota(request, pk):
     mascota = get_object_or_404(Mascota, pk=pk)
     return render(request, 'adoptame/mascota_detail.html', {'mascota': mascota})
 
-def lista_adoptantes(request): #lista adopciones
+# Lista de adoptantes
+def lista_adoptantes(request):
     adoptantes = Adoptante.objects.all()
     return render(request, 'adoptame/adoptantes_list.html', {'adoptantes': adoptantes})
 
-def detalle_adoptante(request, pk): #muestra detalles de un adoptante en particular
+# Detalle de un adoptante
+def detalle_adoptante(request, pk):
     adoptante = get_object_or_404(Adoptante, pk=pk)
     return render(request, 'adoptame/adoptante_detail.html', {'adoptante': adoptante})
 
-def lista_solicitudes(request): #lista solicitudes adopcion
+# Lista de solicitudes de adopción
+def lista_solicitudes(request):
     solicitudes = SolicitudAdopcion.objects.all()
     return render(request, 'adoptame/solicitudes_list.html', {'solicitudes': solicitudes})
 
-def detalle_solicitud(request, pk): #muestra detalles de una solicitud en particular
+# Detalle de una solicitud de adopción
+def detalle_solicitud(request, pk):
     solicitud = get_object_or_404(SolicitudAdopcion, pk=pk)
     return render(request, 'adoptame/solicitud_detail.html', {'solicitud': solicitud})
 
-# procesar busqueda
-from django.shortcuts import render
-from .models import Mascota
-from .forms import MascotaBusquedaForm
-
+# Buscar mascotas (formulario avanzado)
 def buscar_mascotas(request):
     form = MascotaBusquedaForm()
     resultados = None
 
     if 'query' in request.GET:
         form = MascotaBusquedaForm(request.GET)
-        if form.is_valid():
+        if form is_valid():
             query = form.cleaned_data['query']
             resultados = Mascota.objects.filter(nombre__icontains=query) | Mascota.objects.filter(raza__icontains=query)
 
     return render(request, 'adoptame/buscar_mascotas.html', {'form': form, 'resultados': resultados})
 
+# Buscar mascotas (formulario básico)
 def buscar(request):
     query = request.GET.get('q')  # Obtiene el término de búsqueda del formulario
     resultados = []
     if query:
         resultados = Mascota.objects.filter(nombre__icontains=query)  # Filtra por nombre
     return render(request, 'adoptame/buscar.html', {'resultados': resultados, 'query': query})
+
+# Registrar una persona
+def registrar_persona(request):
+    if request.method == 'POST':
+        form = PersonaForm(request.POST)
+        if form.is_valid():
+            form.save()  # Guarda la nueva persona en la base de datos
+            return redirect('index')  # Redirige a la página principal
+    else:
+        form = PersonaForm()
+    return render(request, 'adoptame/registrar_persona.html', {'form': form})
