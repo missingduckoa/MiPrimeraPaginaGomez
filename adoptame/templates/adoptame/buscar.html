@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados de Búsqueda</title>
+</head>
+<body>
+    <h1>Resultados de Búsqueda</h1>
+    <form method="GET" action="{% url 'buscar' %}">
+        <input type="text" name="q" placeholder="Buscar..." value="{{ query }}">
+        <button type="submit">Buscar</button>
+    </form>
+    <ul>
+        {% for mascota in resultados %}
+            <li>{{ mascota.nombre }} - {{ mascota.raza }}</li>
+        {% empty %}
+            <li>No se encontraron resultados.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

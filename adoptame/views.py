@@ -46,3 +46,10 @@ def buscar_mascotas(request):
             resultados = Mascota.objects.filter(nombre__icontains=query) | Mascota.objects.filter(raza__icontains=query)
 
     return render(request, 'adoptame/buscar_mascotas.html', {'form': form, 'resultados': resultados})
+
+def buscar(request):
+    query = request.GET.get('q')  # Obtiene el término de búsqueda del formulario
+    resultados = []
+    if query:
+        resultados = Mascota.objects.filter(nombre__icontains=query)  # Filtra por nombre
+    return render(request, 'adoptame/buscar.html', {'resultados': resultados, 'query': query})
