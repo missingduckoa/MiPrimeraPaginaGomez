@@ -1,0 +1,22 @@
+{% extends 'adoptame/base.html' %}
+
+{% block title %}Buscar Mascotas{% endblock %}
+
+{% block content %}
+    <h2>Buscar Mascotas</h2>
+    <form method="get" action="">
+        {{ form.as_p }}
+        <button type="submit">Buscar</button>
+    </form>
+    
+    {% if resultados is not None %}
+        <h3>Resultados</h3>
+        <ul>
+            {% for mascota in resultados %}
+                <li>{{ mascota.nombre }} - {{ mascota.raza }}</li>
+            {% empty %}
+                <li>No se encontraron resultados.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

@@ -29,3 +29,20 @@ def lista_solicitudes(request): #lista solicitudes adopcion
 def detalle_solicitud(request, pk): #muestra detalles de una solicitud en particular
     solicitud = get_object_or_404(SolicitudAdopcion, pk=pk)
     return render(request, 'adoptame/solicitud_detail.html', {'solicitud': solicitud})
+
+# procesar busqueda
+from django.shortcuts import render
+from .models import Mascota
+from .forms import MascotaBusquedaForm
+
+def buscar_mascotas(request):
+    form = MascotaBusquedaForm()
+    resultados = None
+
+    if 'query' in request.GET:
+        form = MascotaBusquedaForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            resultados = Mascota.objects.filter(nombre__icontains=query) | Mascota.objects.filter(raza__icontains=query)
+
+    return render(request, 'adoptame/buscar_mascotas.html', {'form': form, 'resultados': resultados})
