@@ -17,5 +17,6 @@ urlpatterns = [
     path('adoptantes/<int:pk>/', views.detalle_adoptante, name='detalle_adoptante'),  # Detalle de adoptante
     path('solicitudes/', views.lista_solicitudes, name='lista_solicitudes'),  # Lista de solicitudes
     path('solicitudes/<int:pk>/', views.detalle_solicitud, name='detalle_solicitud'),  # Detalle de solicitud
+    path('registrar/', views.registrar_persona, name='registrar_persona'),  # Ruta para el formulario de ingreso
 ]
 

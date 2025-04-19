@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Mascota, Adoptante, SolicitudAdopcion
+from .forms import PersonaForm
 
 # Create your views here.
 def index(request): #funcion necesaria para recibir como rta lo q tenga la funcion index
@@ -29,3 +30,13 @@ def lista_solicitudes(request): #lista solicitudes adopcion
 def detalle_solicitud(request, pk): #muestra detalles de una solicitud en particular
     solicitud = get_object_or_404(SolicitudAdopcion, pk=pk)
     return render(request, 'adoptame/solicitud_detail.html', {'solicitud': solicitud})
+
+def registrar_persona(request):
+    if request.method == 'POST':
+        form = PersonaForm(request.POST)
+        if form.is_valid():
+            form.save()  # Guarda la nueva persona en la base de datos
+            return redirect('index')  # Redirige a la página principal u otra página
+    else:
+        form = PersonaForm()
+    return render(request, 'adoptame/registrar_persona.html', {'form': form})
