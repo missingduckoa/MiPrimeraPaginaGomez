@@ -44,7 +44,7 @@ def buscar_mascotas(request):
 
     if 'query' in request.GET:
         form = MascotaBusquedaForm(request.GET)
-        if form is_valid():
+        if form.is_valid():
             query = form.cleaned_data['query']
             resultados = Mascota.objects.filter(nombre__icontains=query) | Mascota.objects.filter(raza__icontains=query)
 
