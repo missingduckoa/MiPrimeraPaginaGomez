@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adopta tu mascota</title>
+    <title>Página Principal</title>
 </head>
 <body>
-    <h1>Más que una adopción, una segunda oportunidad</h1>
-    <p>{{ mensaje }}</p>
+    <h1>Bienvenido a Adoptame</h1>
+    <a href="{% url 'adoptame:registrar_persona' %}">Registrar Persona</a>
 </body>
 </html>

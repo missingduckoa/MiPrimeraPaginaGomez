@@ -10,6 +10,6 @@
     <p>Descripción: {{ mascota.descripcion }}</p>
     <p>Fecha de ingreso: {{ mascota.fecha_ingreso }}</p>
     <p>¿Adoptada?: {{ mascota.adoptada|yesno:"Sí,No" }}</p>
-    <a href="{% url 'lista_mascotas' %}">Volver a la lista de mascotas</a>
+    <a href="{% url 'adoptame:mascotas_list' %}">Volver a la lista de mascotas</a>
 </body>
 </html>

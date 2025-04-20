@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Adopta tu mascota{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">Más que una adopción, una segunda oportunidad</h1>
+    <p class="text-center">{{ mensaje }}</p>
+    <div class="container text-center mt-5">
+        <p>Explora las mascotas disponibles para adopción y encuentra a tu nuevo mejor amigo.</p>
+        <a href="{% url 'adoptame:mascotas_list' %}" class="btn btn-primary">Ver Mascotas</a>
+    </div>
+{% endblock %}
+h1 class text-centr mas qe

@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'adoptame',
-    'django_extensions',  # Agrega esta línea
+    'django_extensions',  
+    'Main',
 ]
 
 MIDDLEWARE = [
@@ -58,10 +59,11 @@ ROOT_URLCONF = 'MiPrimeraPaginaGomez.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # No es necesario especificar rutas adicionales si usas APP_DIRS
-        'APP_DIRS': True,  # Esto habilita la búsqueda automática en las apps
+        'DIRS': [],  # Si tienes una carpeta global de templates, agrégala aquí
+        'APP_DIRS': True,  # Esto permite buscar en las carpetas templates de las apps
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
