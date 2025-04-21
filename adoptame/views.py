@@ -35,9 +35,16 @@ def detalle_solicitud(request, pk):
 
 #buscar mascotas
 def buscar_mascotas(request):
-    query = request.GET.get('q', '')
-    mascotas = Mascota.objects.filter(nombre__icontains=query)
-    return render(request, 'adoptame/mascotas_detail.html', {'mascotas': mascotas})
+    form = MascotaBusquedaForm()
+    resultados = None
+
+    if 'query' in request.GET:
+        form = MascotaBusquedaForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            resultados = Mascota.objects.filter(nombre__icontains=query) | Mascota.objects.filter(raza__icontains=query)
+
+    return render(request, 'adoptame/buscar_mascotas.html', {'form': form, 'resultados': resultados})
 
 #registrar una persona
 def registrar_persona(request):

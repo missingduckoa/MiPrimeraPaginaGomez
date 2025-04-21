@@ -15,4 +15,3 @@ urlpatterns = [
     path('adoptame/', include('adoptame.urls')),
 
 ]
-

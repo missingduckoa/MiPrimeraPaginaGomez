@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Buscar Mascotas</h2>
+<form method="get">
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+{% if resultados %}
+    <h3>Resultados:</h3>
+    <ul>
+        {% for mascota in resultados %}
+            <li>
+                <a href="{% url 'adoptame:mascotas_detail' mascota.id %}">{{ mascota.nombre }}</a> - {{ mascota.raza }}
+            </li>
+        {% endfor %}
+    </ul>
+{% elif resultados is not None %}
+    <p>No se encontraron resultados.</p>
+{% endif %}
+{% endblock %}
