@@ -11,7 +11,7 @@
     </form>
     <ul>
         {% for mascota in resultados %}
-            <li>{{ mascota.nombre }} - {{ mascota.raza }}</li>
+            <li>{{ mascota.nombre }} - {{ mascota.raza }} <a href="{% url 'adoptame:solicitar_adopcion' mascota.id %}" class="btn btn-success">Solicitar Adopción</a></li>
         {% empty %}
             <li>No se encontraron resultados.</li>
         {% endfor %}

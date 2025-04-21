@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,11 +6,26 @@
 </head>
 <body>
     <h1>{{ mascota.nombre }}</h1>
+    <!-- mascotas_detail.html -->
+
+
+{% block content %}
+<h2>{{ mascota.nombre }}</h2>
     <p>Raza: {{ mascota.raza }}</p>
     <p>Edad: {{ mascota.edad }} años</p>
     <p>Descripción: {{ mascota.descripcion }}</p>
     <p>Fecha de ingreso: {{ mascota.fecha_ingreso }}</p>
     <p>¿Adoptada?: {{ mascota.adoptada|yesno:"Sí,No" }}</p>
-    <a href="{% url 'adoptame:mascotas_list' %}">Volver a la lista de mascotas</a>
+    <a href="{% url 'adoptame:mascotas_list' %}" class="btn btn-primary">Volver a la lista de mascotas</a>
+    <!-- Botón para solicitar adopción -->
+    <a href="{% url 'adoptame:solicitar_adopcion' mascota.id %}" class="btn btn-success">Solicitar Adopción</a>
+
+{% for mascota in mascotas %}
+    <h3>{{ mascota.nombre }}</h3>
+    <p>Raza: {{ mascota.raza }}</p>
+    <a href="{% url 'adoptame:mascotas_detail' mascota.id %}" class="btn btn-primary">Ver Detalle</a>
+{% endfor %}
+
 </body>
 </html>
+{% endblock %}

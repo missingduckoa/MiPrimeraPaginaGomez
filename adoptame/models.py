@@ -3,10 +3,10 @@ from django.db import models
 # Create your models here.
 class Mascota(models.Model):
     nombre = models.CharField(max_length=100)
-    edad = models.IntegerField()
     raza = models.CharField(max_length=100)
-    descripcion = models.TextField(blank=True)
-    fecha_ingreso = models.DateField(auto_now_add=True)
+    edad = models.IntegerField()
+    descripcion = models.TextField()
+    fecha_ingreso = models.DateField()
     adoptada = models.BooleanField(default=False)
 
     def __str__(self):
@@ -25,8 +25,8 @@ class Adoptante(models.Model):
 
 
 class SolicitudAdopcion(models.Model):
-    mascota = models.ForeignKey(Mascota, on_delete=models.CASCADE, related_name="solicitudes")
-    adoptante = models.ForeignKey(Adoptante, on_delete=models.CASCADE, related_name="solicitudes")
+    mascota = models.ForeignKey(Mascota, on_delete=models.CASCADE)
+    adoptante = models.ForeignKey(Adoptante, on_delete=models.CASCADE)
     fecha_solicitud = models.DateTimeField(auto_now_add=True)
     estado = models.CharField(
         max_length=20,

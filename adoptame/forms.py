@@ -1,5 +1,5 @@
 from django import forms
-from .models import Persona
+from .models import Persona, SolicitudAdopcion, Mascota
 
 #formulario para el modelo Persona
 class PersonaForm(forms.ModelForm):
@@ -15,3 +15,13 @@ class MascotaBusquedaForm(forms.Form):
         required=False,
         widget=forms.TextInput(attrs={'placeholder': 'Nombre o raza'})
     )
+
+class SolicitudAdopcionForm(forms.ModelForm):
+    class Meta:
+        model = SolicitudAdopcion
+        fields = ['adoptante', 'comentarios']
+
+class MascotaForm(forms.ModelForm):
+    class Meta:
+        model = Mascota
+        fields = ['nombre', 'edad', 'raza', 'descripcion', 'adoptada']
