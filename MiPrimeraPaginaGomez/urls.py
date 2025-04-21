@@ -6,7 +6,7 @@ The `urlpatterns` list routes URLs to views. For more information please see:
 """
 from django.contrib import admin
 from django.urls import path
-from adoptame import views  # Importa todas las vistas necesarias
+from adoptame import views  
 from django.urls import path, include
 
 urlpatterns = [

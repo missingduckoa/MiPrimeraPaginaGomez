@@ -12,12 +12,10 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="btn btn-primary nav-link text-gray" href="{% url 'adoptame:registrar_persona' %}">Registrarse</a></li>
                     <li class="nav-item"><a class="btn btn-primary nav-link text-gray" href="{% url 'Main:index' %}">Inicio</a></li>
-                    <!-- Botón para registrar mascota -->
                     <li class="nav-item">
                         <a class="btn btn-primary nav-link text-gray" href="{% url 'adoptame:registrar_mascota' %}">Registrar Mascota</a>
                     </li>
                 </ul>
-                <!-- Barra de búsqueda -->
                 <form method="get" action="{% url 'adoptame:buscar_mascotas' %}" class="d-flex ms-auto">
                     <input type="text" name="query" class="form-control me-2" placeholder="Buscar mascotas...">
                     <button type="submit" class="btn btn-outline-primary">Buscar</button>

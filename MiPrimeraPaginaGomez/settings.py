@@ -59,8 +59,8 @@ ROOT_URLCONF = 'MiPrimeraPaginaGomez.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # Si tienes una carpeta global de templates, agrégala aquí
-        'APP_DIRS': True,  # Esto permite buscar en las carpetas templates de las apps
+        'DIRS': [], 
+        'APP_DIRS': True,  
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
